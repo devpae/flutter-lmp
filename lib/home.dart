@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+import 'product.dart';
+import 'order.dart';
+import 'payment.dart';
+import 'logistic.dart';
+
 class HomePage extends StatefulWidget {
 
   @override
@@ -11,92 +16,98 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
 
-    return MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
+    return Scaffold(
+      appBar: AppBar(
 
-          elevation: 0,
-          toolbarHeight: 120,
-          flexibleSpace: Image(
-            image: NetworkImage('https://images.unsplash.com/photo-1510343513665-4527e381af08?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1520&q=80'),
-            fit: BoxFit.cover,
+        elevation: 0,
+        toolbarHeight: 120,
+        flexibleSpace: Image(
+          image: NetworkImage('https://images.unsplash.com/photo-1510343513665-4527e381af08?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1520&q=80'),
+          fit: BoxFit.cover,
+        ),
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          icon: Icon(
+            Icons.menu,
+            color: Colors.white,
           ),
-          backgroundColor: Colors.transparent,
-          leading: IconButton(
+          onPressed: () {
+            // do something
+          },
+        ),
+        actions: <Widget>[
+          IconButton(
             icon: Icon(
-              Icons.menu,
+              Icons.settings,
               color: Colors.white,
             ),
             onPressed: () {
               // do something
             },
-          ),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.settings,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                // do something
-              },
-            )
-          ],
-          bottom: PreferredSize(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          width: 100,
-                          height: 100,
-                          margin: const EdgeInsets.only(top:10, bottom: 10),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                                image: NetworkImage('https://cdn.dribbble.com/users/2439896/screenshots/9426895/colorful_camping_adventure_badge_logo_4x.jpg'),
-                                fit: BoxFit.fill
-                            ),
+          )
+        ],
+        bottom: PreferredSize(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        width: 100,
+                        height: 100,
+                        margin: const EdgeInsets.only(top:10, bottom: 10),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                              image: NetworkImage('https://cdn.dribbble.com/users/2439896/screenshots/9426895/colorful_camping_adventure_badge_logo_4x.jpg'),
+                              fit: BoxFit.fill
                           ),
                         ),
-                      ],
-                    ),
-                    Row(
-                      children: [
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
 
-                        Container(
-                          margin: const EdgeInsets.only(top:10, bottom: 30),
-                          child:Text(
-                            'KNK Camping Store',
-                            style: TextStyle(color: Color(0xfffffffff), fontSize: 24, fontWeight: FontWeight.bold),
-                          ),
+                      Container(
+                        margin: const EdgeInsets.only(top:10, bottom: 30),
+                        child:Text(
+                          'KNK Camping Store',
+                          style: TextStyle(color: Color(0xfffffffff), fontSize: 24, fontWeight: FontWeight.bold),
                         ),
-                      ],
-                    ),
-                  ],
-                )
-              ],
-            ),
-            preferredSize: Size(0.0, 100),
+                      ),
+                    ],
+                  ),
+                ],
+              )
+            ],
           ),
+          preferredSize: Size(0.0, 100),
         ),
-        body: Center(
-          // Center is a layout widget. It takes a single child and positions it
-          // in the middle of the parent.
-            child: GridView.count(
-              primary: false,
-              padding: const EdgeInsets.all(20),
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20,
-              crossAxisCount: 2,
-              children: <Widget>[
-                Container(
+      ),
+      body: Center(
+        // Center is a layout widget. It takes a single child and positions it
+        // in the middle of the parent.
+          child: GridView.count(
+            primary: false,
+            padding: const EdgeInsets.all(20),
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 20,
+            crossAxisCount: 2,
+            children: <Widget>[
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                      return ProductPage();
+                    }),
+                  );
+                },
+                child:           Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                       border: Border.all(color: Color(0xffdcdcdc)),
@@ -145,7 +156,17 @@ class _HomePageState extends State<HomePage> {
                       ],
                     )
                 ),
-                Container(
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                      return OrderPage();
+                    }),
+                  );
+                },
+                child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                       border: Border.all(color: Color(0xffdcdcdc)),
@@ -194,7 +215,17 @@ class _HomePageState extends State<HomePage> {
                       ],
                     )
                 ),
-                Container(
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                      return PaymentPage();
+                    }),
+                  );
+                },
+                child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                       border: Border.all(color: Color(0xffdcdcdc)),
@@ -243,7 +274,17 @@ class _HomePageState extends State<HomePage> {
                       ],
                     )
                 ),
-                Container(
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) {
+                      return LogisticPage();
+                    }),
+                  );
+                },
+                child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                       border: Border.all(color: Color(0xffdcdcdc)),
@@ -292,10 +333,12 @@ class _HomePageState extends State<HomePage> {
                       ],
                     )
                 ),
-              ],
-            )
-        ),// This trailing comma makes auto-formatting nicer for build methods.
-      )
+              )
+            ],
+          )
+      ),// This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
+
+

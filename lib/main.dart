@@ -5,5 +5,11 @@ import 'home.dart';
 import 'product.dart';
 
 void main() {
-  runApp(HomePage());
+  runApp(
+      MaterialApp(
+        title: 'Flutter Demo',
+        debugShowCheckedModeBanner: false,
+        home: HomePage(),
+      )
+  );
 }
